@@ -1,0 +1,12 @@
+# Giphy API Key Configuration
+# 
+# To set up your Giphy API key:
+# 1. Get a free API key from https://developers.giphy.com/
+# 2. Copy this file to api_keys.properties (without .example)
+# 3. Replace YOUR_GIPHY_API_KEY_HERE with your actual API key
+#
+# Note: The app will work with a demo key if this file is not configured,
+# but using your own key is recommended for better rate limits.
+
+GIPHY_API_KEY=YOUR_GIPHY_API_KEY_HERE
+
