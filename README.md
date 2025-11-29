@@ -13,6 +13,28 @@ A fun Android application that generates personalized jokes with emojis based on
 - **Persistent Storage**: Your custom jokes and online jokes are saved and persist between app sessions
 - **Loading States**: Visual feedback while fetching online jokes
 - **Smart Fallback**: Automatically switches between online and offline modes
+- **GIF Integration**: Displays mood-specific GIFs from Giphy alongside jokes
+
+## Setup
+
+### Giphy API Key Configuration
+
+The app uses Giphy API to fetch mood-specific GIFs. To set up your own API key:
+
+1. **Get a Giphy API Key** (free):
+   - Visit [Giphy Developers Portal](https://developers.giphy.com/)
+   - Sign up for a free account
+   - Create a new app to get your API key
+
+2. **Configure the API Key**:
+   - Copy `app/api_keys.properties.example` to `app/api_keys.properties`
+   - Open `app/api_keys.properties` and replace `YOUR_GIPHY_API_KEY_HERE` with your actual API key
+   - The file should look like: `GIPHY_API_KEY=your_actual_key_here`
+
+3. **Note**: 
+   - The app will work with a demo API key if you don't configure your own
+   - However, using your own key is recommended for better rate limits and full functionality
+   - The `api_keys.properties` file is gitignored and won't be committed to version control
 
 ## How to Use
 
@@ -32,7 +54,8 @@ A fun Android application that generates personalized jokes with emojis based on
 - **Storage**: Uses SharedPreferences with Gson for JSON serialization
 - **Architecture**: Simple MVC pattern with Activities and Manager classes
 - **Network**: HTTP requests using HttpURLConnection with AsyncTask
-- **APIs**: JokeAPI (primary), Chuck Norris API (fallback)
+- **APIs**: JokeAPI (primary), Chuck Norris API (fallback), Giphy API (for GIFs)
+- **Image Loading**: Glide library for GIF loading
 - **Permissions**: INTERNET, ACCESS_NETWORK_STATE
 
 ## Project Structure

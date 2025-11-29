@@ -10,19 +10,25 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
 import java.util.Random;
 
 public class GiphyApiService {
 
     private static final String TAG = "GiphyApiService";
 
-    // Giphy API key
-    private static final String API_KEY = "BBcJYchESsutmWrVDyerHHJTVkgwYR4F";
+    // Fallback demo API key (public beta key with limited rate)
+    private static final String FALLBACK_API_KEY = "dc6zaTOxFJmzC";
     private static final String SEARCH_ENDPOINT =
             "https://api.giphy.com/v1/gifs/search?api_key=%s&q=%s&limit=25&rating=g&lang=en";
+    
+    // Cache the loaded API key to avoid reading file multiple times
+    private static String cachedApiKey = null;
 
     public interface GifCallback {
         void onGifReceived(String gifUrl);
@@ -35,6 +41,56 @@ public class GiphyApiService {
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    /**
+     * Loads the Giphy API key from api_keys.properties file.
+     * Falls back to demo key if file is not found.
+     * 
+     * @return API key string
+     */
+    private static String loadApiKey() {
+        // Return cached key if already loaded
+        if (cachedApiKey != null) {
+            return cachedApiKey;
+        }
+
+        // Try multiple possible paths for the properties file
+        String[] possiblePaths = {
+            "app/api_keys.properties",           // Standard project structure
+            "../app/api_keys.properties",        // If running from different directory
+            "api_keys.properties",               // Root level
+            System.getProperty("user.dir") + "/app/api_keys.properties",  // Absolute from working dir
+            System.getProperty("user.dir") + "/api_keys.properties"       // Absolute root
+        };
+
+        for (String path : possiblePaths) {
+            try {
+                File propertiesFile = new File(path);
+                if (propertiesFile.exists() && propertiesFile.isFile()) {
+                    Properties properties = new Properties();
+                    FileInputStream inputStream = new FileInputStream(propertiesFile);
+                    properties.load(inputStream);
+                    inputStream.close();
+
+                    String apiKey = properties.getProperty("GIPHY_API_KEY");
+                    if (apiKey != null && !apiKey.trim().isEmpty() && 
+                        !apiKey.equals("YOUR_GIPHY_API_KEY_HERE")) {
+                        cachedApiKey = apiKey.trim();
+                        Log.d(TAG, "Giphy API key loaded from properties file: " + path);
+                        return cachedApiKey;
+                    }
+                }
+            } catch (Exception e) {
+                // Try next path
+                continue;
+            }
+        }
+
+        // Fallback to demo key
+        Log.w(TAG, "Using fallback demo API key. For better rate limits, set up your own key in app/api_keys.properties");
+        cachedApiKey = FALLBACK_API_KEY;
+        return cachedApiKey;
     }
 
     public static void fetchMoodGif(Context context, String mood, GifCallback callback) {
@@ -95,7 +151,9 @@ public class GiphyApiService {
                     encodedQuery = "funny";
                 }
 
-                String urlString = String.format(SEARCH_ENDPOINT, API_KEY, encodedQuery);
+                // Load API key (with fallback)
+                String apiKey = loadApiKey();
+                String urlString = String.format(SEARCH_ENDPOINT, apiKey, encodedQuery);
                 URL url = new URL(urlString);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
