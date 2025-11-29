@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_joke_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_color"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/joke_text_label"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/jokeTextEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/joke_text_hint"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="16dp"
+            android:minLines="3"
+            android:gravity="top" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/emoji_label"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/emojiEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/emoji_hint"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="16dp"
+            android:maxLength="2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mood_label"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/moodRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/happyRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/happy"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                android:layout_marginBottom="8dp" />
+
+            <RadioButton
+                android:id="@+id/sadRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sad"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                android:layout_marginBottom="8dp" />
+
+            <RadioButton
+                android:id="@+id/excitedRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/excited"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                android:layout_marginBottom="8dp" />
+
+            <RadioButton
+                android:id="@+id/calmRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calm"
+                android:textSize="16sp"
+                android:textColor="@color/text_color" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/saveJokeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/save_joke"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/save_button_background"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/back_button_background"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

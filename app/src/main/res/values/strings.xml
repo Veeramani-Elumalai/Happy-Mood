@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Happy Mood</string>
+    <string name="app_title">Happy Mood 😊</string>
+    <string name="welcome_message">Welcome to Happy Mood! 😊\nChoose your mood to get a personalized joke!</string>
+    <string name="choose_mood">Choose Your Mood:</string>
+    <string name="happy">Happy 😄</string>
+    <string name="sad">Sad 😢</string>
+    <string name="excited">Excited 🤩</string>
+    <string name="calm">Calm 😌</string>
+    <string name="instant_joke">Get Instant Jokes 🎲</string>
+    <string name="add_joke">Add Your Own Joke ➕</string>
+    
+    <!-- Add Joke Activity -->
+    <string name="add_joke_title">Add Your Joke</string>
+    <string name="joke_text_label">Joke Text:</string>
+    <string name="joke_text_hint">Enter your joke here...</string>
+    <string name="emoji_label">Emoji:</string>
+    <string name="emoji_hint">Enter an emoji</string>
+    <string name="mood_label">Mood Category:</string>
+    <string name="save_joke">Save Joke</string>
+    <string name="back">Back</string>
+    
+    <!-- Online Features -->
+    <string name="fetching_joke">Fetching a fresh joke for you... 🔄</string>
+    <string name="using_offline">Using offline jokes</string>
+    <string name="no_internet">No internet connection - using offline jokes</string>
+    <string name="online_joke_added">Fresh joke added from online! 🌐</string>
+    <string name="mood_gif_content_description">Mood-related GIF</string>
+</resources>
